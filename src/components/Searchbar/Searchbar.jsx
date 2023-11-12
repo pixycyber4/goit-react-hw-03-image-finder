@@ -42,5 +42,4 @@ export class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   setSearch: PropTypes.func.isRequired,
-  query: PropTypes.string.isRequired,
 };

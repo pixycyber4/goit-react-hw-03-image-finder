@@ -50,6 +50,9 @@ export class App extends React.Component {
       this.state.first_load = false;
     } catch (error) {
       toast.error('Sorry, but something went wrong :(');
+    } finally {
+      this.setState({ loading: false });
+      this.setState({ first_load: false });
     }
   };
 
@@ -73,19 +76,8 @@ export class App extends React.Component {
     const { images, loading, q, isOpen, contentModal, total } = this.state;
     return (
       <Wrapper>
-        <SearchBar
-          setSearch={this.handleSetSearch}
-          loading={loading}
-          query={q}
-        />
+        <SearchBar setSearch={this.handleSetSearch} />
         <ImageGallery toggleModal={this.toggleModal} images={images} />
-
-        {total > images.length ? (
-          <Button onClick={this.handleLoadMore}>
-            {loading ? 'Loading...' : 'Load more'}
-          </Button>
-        ) : null}
-
         {loading && (
           <Circles
             height="80"
@@ -93,11 +85,19 @@ export class App extends React.Component {
             color="rgba(65, 47, 23, 0.673)"
             ariaLabel="circles-loading"
             wrapperStyle={{
-              marginLeft: '50%',
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '20px',
             }}
             visible={true}
           />
         )}
+
+        {total > images.length ? (
+          <Button onClick={this.handleLoadMore}>
+            {loading ? 'Loading...' : 'Load more'}
+          </Button>
+        ) : null}
 
         {isOpen && contentModal ? (
           <Modal close={this.toggleModal}>
