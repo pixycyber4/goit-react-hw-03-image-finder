@@ -73,7 +73,7 @@ export class App extends React.Component {
   };
 
   render() {
-    const { images, loading, q, isOpen, contentModal, total } = this.state;
+    const { images, loading, isOpen, contentModal, total } = this.state;
     return (
       <Wrapper>
         <SearchBar setSearch={this.handleSetSearch} />
