@@ -27,7 +27,7 @@ export class Modal extends React.Component {
 
   render() {
     return (
-      <Wrapper>
+      <Wrapper onClick={this.handleClickOut}>
         <WrapperModal>
           <Button onClick={this.props.close}>✖️</Button>
           {this.props.children}
